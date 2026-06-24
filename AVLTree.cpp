@@ -109,3 +109,4 @@ void AVLTree::Insert(string const &PostContent, time_t newTime)
 {
     root = InsertHelper(root, PostContent, newTime);
 }
+

@@ -1,5 +1,5 @@
+#pragma once
 #include "Common.hpp"
-
 #include "Graph.hpp"
 #include "AVLTree.hpp"
 #include "User.hpp"

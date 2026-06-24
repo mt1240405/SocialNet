@@ -76,5 +76,6 @@ int main()
         {
             cout << "Unknown command\n";
         }
+        this_thread::sleep_for(chrono::seconds(1));
     }
 }

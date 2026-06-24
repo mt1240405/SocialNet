@@ -1,7 +1,6 @@
 #pragma once
-#include <string>
-#include <vector>
-#include <ctime>
+#include "Common.hpp"
+
 struct TreeNode
 {
     string PostContent;

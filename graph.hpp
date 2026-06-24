@@ -1,5 +1,16 @@
+#pragma once
 #include "Common.hpp"
 #include "User.hpp"
+
+struct PairHash
+{
+    size_t operator()(
+        const pair<int,int>& p) const
+    {
+        return hash<int>()(p.first)
+             ^ (hash<int>()(p.second) << 1);
+    }
+};
 
 class Graph
 {
@@ -7,6 +18,7 @@ private:
     vector<User *> NodeList;
     vector<vector<int>> AdjacencyList;
     unordered_map<string, int> usernameToId;
+    unordered_set <pair<int,int>,PairHash> edgeList;
 public:
     void AddUser(int userId, const string &username);       // add a User
     void AddFriendship(int userId1, int userId2);             // add friends

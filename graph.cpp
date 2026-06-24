@@ -1,4 +1,3 @@
-#include "Common.hpp"
 #include "Graph.hpp"
 
 void Graph::AddUser(int UserId, const string &username)
@@ -15,6 +14,16 @@ void Graph::AddUser(int UserId, const string &username)
 
 void Graph::AddFriendship(int userId1, int userId2)
 {
+    if(userId1 > userId2)
+    {
+        swap(userId1,userId2);
+    }
+    if(edgeList.count({userId1,userId2}))
+    {
+        cout << "Friendship exists!" <<endl;
+        return;
+    }
+    edgeList.insert({userId1,userId2});
     AdjacencyList[userId1].push_back(userId2);
     AdjacencyList[userId2].push_back(userId1);
 }
@@ -104,7 +113,7 @@ int Graph::shortestPathLength(int userId1, int userId2) const
                 flag = true;
                 break;
             }
-            
+
             for (int friendId : AdjacencyList[cur])
             {
                 if (visited[friendId])
@@ -123,7 +132,7 @@ int Graph::shortestPathLength(int userId1, int userId2) const
         return -1;
 }
 
-User *Graph::getUser(int id) const
+User *Graph::getUser(int id) const //valid already checked in getUserIndex
 {
     return NodeList[id];
 }
@@ -135,3 +144,4 @@ int Graph::getUserIndex(const string &username) const
     cout << "Invalid Username\n";
     return -1;
 }
+
