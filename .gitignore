@@ -1,0 +1,7 @@
+*.exe
+*.txt
+*.pdf
+*.bat
+*.py
+*.sh
+.vscode

@@ -1,98 +1,80 @@
-/*
- * Name: Tanmay Modi
- * Entry No. : 2024MT10405
- * Assignment: SocialNet
- */
-
-#include "header.hpp"
+#include "SocialNetwork.hpp"
 
 int main()
 {
-    // std::ifstream fin("input.txt");
-    // std::ofstream fout("output.txt");
+    SocialNetwork sn;
+    string command;
 
-    // if (!fin.is_open() || !fout.is_open())
-    // {
-    //     std::cerr << "Error: could not open input.txt or output.txt\n";
-    //     return 1;
-    // }
-
-    // std::cin.rdbuf(fin.rdbuf());
-    // std::cout.rdbuf(fout.rdbuf());
-
-    socialnet sn;
-    std::string command;
-    auto to_lower = [](std::string &s)
+    auto toLower = [](string &s)
     {
-        std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+        transform(s.begin(), s.end(), s.begin(), ::tolower);
     };
-    while (std::cin >> command)
+
+    while (cin >> command)
     {
         if (command == "ADD_USER")
         {
-            std::string username;
-            std::cin >> username;
-            to_lower(username);
-            sn.add_user(username);
+            string username;
+            cin >> username;
+            toLower(username);
+            sn.AddUser(username);
         }
         else if (command == "ADD_FRIEND")
         {
-            std::string u1, u2;
-            std::cin >> u1 >> u2;
-            to_lower(u1);
-            to_lower(u2);
-            sn.add_friend(u1, u2);
+            string user1, user2;
+            cin >> user1 >> user2;
+            toLower(user1);
+            toLower(user2);
+            sn.AddFriend(user1, user2);
         }
         else if (command == "ADD_POST")
         {
-            std::string username;
-            std::cin >> username;
-            std::string content;
-            to_lower(username);
-            std::getline(std::cin >> std::ws, content);
-            sn.add_post(username, content);
+            string username;
+            cin >> username;
+            string content;
+            toLower(username);
+            getline(cin >> ws, content);
+            sn.AddPost(username, content);
         }
         else if (command == "LIST_FRIENDS")
         {
-            std::string username;
-            std::cin >> username;
-            to_lower(username);
-            sn.list_friends(username);
+            string username;
+            cin >> username;
+            toLower(username);
+            sn.ListFriends(username);
         }
         else if (command == "SUGGEST_FRIENDS")
         {
-            std::string username;
+            string username;
             int n;
-            std::cin >> username >> n;
-            to_lower(username);
-            sn.suggest_friends(username, n);
+            cin >> username >> n;
+            toLower(username);
+            sn.SuggestFriends(username, n);
         }
         else if (command == "DEGREES_OF_SEPARATION")
         {
-            std::string u1, u2;
-            std::cin >> u1 >> u2;
-            to_lower(u1);
-            to_lower(u2);
-            sn.degrees_of_separation(u1, u2);
+            string user1, user2;
+            cin >> user1 >> user2;
+            toLower(user1);
+            toLower(user2);
+            sn.DegreesOfSeparation(user1, user2);
         }
         else if (command == "OUTPUT_POSTS")
         {
-            std::string username;
-            int n;
-            std::cin >> username >> n;
-            to_lower(username);
-            sn.output_posts(username, n);
+            string username;
+            int postCount;
+            cin >> username >> postCount;
+            toLower(username);
+            sn.OutputPosts(username, postCount);
         }
         else if (command == "EXIT")
         {
-            std::cout << "Exiting...\n";
+            cout << "Exiting...\n";
             break;
         }
         else
         {
-            std::cout << "Unknown command\n";
+            cout << "Unknown command\n";
         }
     }
-    // fin.close();
-    // fout.close();
 }
