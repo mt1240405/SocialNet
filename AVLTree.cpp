@@ -126,3 +126,40 @@ void AVLTree::DeleteTree(TreeNode* node)
 
     delete node;
 }
+
+TreeNode* AVLTree::FindPost(TreeNode* node, const string& postContent)
+{
+    if (!node)
+    return nullptr;
+    if (node->PostContent == postContent)
+        return node;
+    TreeNode* left = FindPost(node->left, postContent);
+
+    if (left)
+        return left;
+    return FindPost(node->right, postContent);
+}
+
+bool AVLTree::LikePost(const string& postContent)
+{
+    TreeNode* node = FindPost(root, postContent);
+
+    if (!node)
+        return false;
+
+    node->likes++;
+
+    return true;
+}
+
+bool AVLTree::UnlikePost(const string& postContent)
+{
+    TreeNode* node = FindPost(root, postContent);
+
+    if (!node)
+        return false;
+
+    node->likes--;
+
+    return true;
+}

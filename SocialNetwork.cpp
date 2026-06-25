@@ -99,3 +99,19 @@ void SocialNetwork::Clear()
 
     UserContentList.clear();
 }
+
+void SocialNetwork::LikePost(const string& username, const string& postContent)
+{
+    if (graph.getUserIndex(username) < 0)
+        return;
+    if (!UserContentList[username].LikePost(postContent))
+        cout << "Post not found\n";
+}
+
+void SocialNetwork::UnlikePost(const string& username, const string& postContent)
+{
+    if (graph.getUserIndex(username) < 0)
+        return;
+    if (!UserContentList[username].LikePost(postContent))
+        cout << "Post not found\n";
+}

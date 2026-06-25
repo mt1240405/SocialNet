@@ -8,7 +8,8 @@ struct TreeNode
     TreeNode *right;
     int height;
     time_t timestamp;
-    TreeNode(string const &content, time_t newTime) : PostContent(content), left(nullptr), right(nullptr), height(0), timestamp(newTime) {}
+    int likes;
+    TreeNode(string const &content, time_t newTime) : PostContent(content), left(nullptr), right(nullptr), height(0), timestamp(newTime),likes(0) {}
 };
 
 class AVLTree
@@ -16,6 +17,7 @@ class AVLTree
 private:
     TreeNode *root;
     void DeleteTree(TreeNode* node);
+    TreeNode* FindPost(TreeNode* node, const string& postContent);
 public:
     AVLTree() : root(nullptr) {}
     TreeNode *InsertHelper(TreeNode *node, string const &PostContent, time_t newTime); // Insert a new post
@@ -28,4 +30,7 @@ public:
     TreeNode *GetRoot() const;
     void Insert(string const &PostContent, time_t newTime);
     void Clear();
+    bool LikePost(const string& postContent);
+    bool UnlikePost(const string& postContent);
+    int GetLikes(const string& postContent) const;
 };

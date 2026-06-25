@@ -20,4 +20,6 @@ public: //As per given in requirements
     void OutputPosts(const string &username, int postCount) const;
     void Clear();
     bool isReplay;
+    void LikePost(const string& username, const string& postContent);
+    void UnlikePost(const string& username, const string& postContent);
 };

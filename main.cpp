@@ -77,6 +77,24 @@ void Run(SocialNetwork &sn)
         {
             sn.Clear();
         }
+        else if (command == "LIKE_POST")
+        {
+            string username;
+            cin >> username;
+            string content;
+            toLower(username);
+            getline(cin >> ws, content);
+            sn.LikePost(username, content);
+        }
+        else if (command == "UNLIKE_POST")
+        {
+            string username;
+            cin >> username;
+            string content;
+            toLower(username);
+            getline(cin >> ws, content);
+            sn.UnlikePost(username, content);
+        }
         else
         {
             cout << "Unknown command\n";
