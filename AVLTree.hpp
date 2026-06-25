@@ -32,5 +32,5 @@ public:
     void Clear();
     bool LikePost(const string& postContent);
     bool UnlikePost(const string& postContent);
-    int GetLikes(const string& postContent) const;
+    int GetLikes(const string& postContent);
 };

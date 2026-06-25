@@ -163,3 +163,11 @@ bool AVLTree::UnlikePost(const string& postContent)
 
     return true;
 }
+
+int AVLTree::GetLikes(const string& postContent)
+{
+    TreeNode* node = FindPost(root, postContent);
+    if (!node)
+        return 0;
+    return node->likes;
+}

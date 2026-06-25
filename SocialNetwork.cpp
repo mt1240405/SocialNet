@@ -112,6 +112,6 @@ void SocialNetwork::UnlikePost(const string& username, const string& postContent
 {
     if (graph.getUserIndex(username) < 0)
         return;
-    if (!UserContentList[username].LikePost(postContent))
+    if (!UserContentList[username].UnlikePost(postContent))
         cout << "Post not found\n";
 }
