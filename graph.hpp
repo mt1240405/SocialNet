@@ -27,4 +27,5 @@ public:
     int shortestPathLength(int userId1, int userId2) const;      // find the DOS
     User *getUser(int id) const;                          // get User pointer by id
     int getUserIndex(const string &username) const; // find vertex index by username
+    void Clear();
 };

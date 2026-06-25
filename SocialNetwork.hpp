@@ -10,7 +10,6 @@ private:
     Graph graph;
     unordered_map<string, int> UserList;
     unordered_map<string, AVLTree> UserContentList;
-
 public: //As per given in requirements
     void AddUser(const string &username);
     void AddFriend(const string &user1, const string &user2);
@@ -19,4 +18,6 @@ public: //As per given in requirements
     void SuggestFriends(const string &username, int friendCount) const;
     void DegreesOfSeparation(const string &user1, const string &user2) const;
     void OutputPosts(const string &username, int postCount) const;
+    void Clear();
+    bool isReplay;
 };

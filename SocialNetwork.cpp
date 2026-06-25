@@ -1,4 +1,5 @@
 #include "SocialNetwork.hpp"
+#include "CommandJournal.hpp"
 
 void SocialNetwork::AddUser(const string &username)
 {
@@ -7,6 +8,8 @@ void SocialNetwork::AddUser(const string &username)
         cout << "Username already exists\n";
         return;
     }
+    if(!isReplay)
+        CommandJournal::Append("ADD_USER " + username);
     int id = UserList.size();
     UserList[username] = id;
     graph.AddUser(id, username);
@@ -22,6 +25,8 @@ void SocialNetwork::AddFriend(const string &user1, const string &user2)
         cout << "Friendships must be between different users\n";
         return;
     }
+    if(!isReplay)
+            CommandJournal::Append("ADD_FRIEND " + user1 + " " + user2);
     graph.AddFriendship(UserList[user1], UserList[user2]);
 }
 
@@ -31,6 +36,8 @@ void SocialNetwork::AddPost(const string &username, const string &content)
         return;
     time_t postCreated = time(nullptr);
     UserContentList[username].Insert(content, postCreated);
+    if(!isReplay)
+            CommandJournal::Append("ADD_POST " + username + " " + content);
 }
 
 void SocialNetwork::ListFriends(const string &username) const
@@ -81,4 +88,14 @@ void SocialNetwork::OutputPosts(const string &username, int postCount) const
         UserContentList.at(username).GetRecentPosts(postCount, content_list, root);
     for (const auto &post : content_list)
         cout << post << '\n';
+}
+
+void SocialNetwork::Clear()
+{
+    graph.Clear();
+    UserList.clear();
+    for (auto& tree : UserContentList)
+        tree.second.Clear();
+
+    UserContentList.clear();
 }

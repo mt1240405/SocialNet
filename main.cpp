@@ -1,8 +1,8 @@
 #include "SocialNetwork.hpp"
+#include "CommandJournal.hpp"
 
-int main()
+void Run(SocialNetwork &sn)
 {
-    SocialNetwork sn;
     string command;
 
     auto toLower = [](string &s)
@@ -18,6 +18,7 @@ int main()
             cin >> username;
             toLower(username);
             sn.AddUser(username);
+            
         }
         else if (command == "ADD_FRIEND")
         {
@@ -72,10 +73,33 @@ int main()
             cout << "Exiting...\n";
             break;
         }
+        else if(command == "CLEAR")
+        {
+            sn.Clear();
+        }
         else
         {
             cout << "Unknown command\n";
         }
+        if(!sn.isReplay)
         this_thread::sleep_for(chrono::seconds(1));
     }
+}
+
+int main()
+{
+    SocialNetwork sn;
+    // ios::sync_with_stdio(false);
+    // cin.tie(nullptr);
+
+    CommandJournal commandJournal;
+    ifstream logFile("commands.log");
+    auto *CinBuffer = cin.rdbuf();
+    cin.rdbuf(logFile.rdbuf());
+    sn.isReplay = true;
+
+    Run(sn);
+    cin.rdbuf(CinBuffer);
+    sn.isReplay = false;
+    Run(sn);
 }

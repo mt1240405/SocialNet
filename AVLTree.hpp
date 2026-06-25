@@ -15,7 +15,7 @@ class AVLTree
 {
 private:
     TreeNode *root;
-
+    void DeleteTree(TreeNode* node);
 public:
     AVLTree() : root(nullptr) {}
     TreeNode *InsertHelper(TreeNode *node, string const &PostContent, time_t newTime); // Insert a new post
@@ -27,4 +27,5 @@ public:
     int GetBalance(TreeNode *node);
     TreeNode *GetRoot() const;
     void Insert(string const &PostContent, time_t newTime);
+    void Clear();
 };

@@ -145,3 +145,13 @@ int Graph::getUserIndex(const string &username) const
     return -1;
 }
 
+void Graph::Clear()
+{
+    for (User* user : NodeList)
+        delete user;
+
+    NodeList.clear();
+    AdjacencyList.clear();
+    usernameToId.clear();
+    edgeList.clear();
+}

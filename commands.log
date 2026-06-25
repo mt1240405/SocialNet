@@ -1,0 +1,43 @@
+ADD_USER 5
+ADD_USER 3
+ADD_USER 7
+ADD_USER 6
+ADD_USER 8
+ADD_USER 3
+ADD_USER 2
+ADD_FRIEND 1 5
+ADD_USER 2
+ADD_FRIEND 1 4
+ADD_FRIEND 6 5
+ADD_USER 0
+ADD_POST 8 hello this is 8 from 7
+ADD_POST 6 hello this is 6 from 9
+ADD_FRIEND 2 2
+ADD_USER 0
+ADD_POST 1 hello this is 1 from 9
+ADD_USER 0
+ADD_POST 5 hello this is 5 from 2
+ADD_USER 6
+ADD_FRIEND 2 1
+ADD_POST 3 hello this is 3 from 6
+ADD_FRIEND 3 2
+ADD_POST 4 hello this is 4 from 9
+ADD_USER 2
+ADD_USER 3
+ADD_USER 8
+ADD_POST 8 hello this is 8 from 9
+ADD_USER 5
+ADD_POST 7 hello this is 7 from 4
+ADD_POST 0 hello this is 0 from 9
+ADD_POST 4 hello this is 4 from 5
+ADD_FRIEND 7 6
+ADD_POST 8 hello this is 8 from 4
+ADD_POST 3 hello this is 3 from 7
+ADD_FRIEND 7 1
+ADD_USER 0
+ADD_USER 2
+ADD_FRIEND 0 7
+ADD_USER 7
+ADD_POST 2 hello this is 2 from 1
+ADD_USER 8
+ADD_POST 4 hello this is 4 from 3

@@ -110,3 +110,19 @@ void AVLTree::Insert(string const &PostContent, time_t newTime)
     root = InsertHelper(root, PostContent, newTime);
 }
 
+void AVLTree::Clear()
+{
+    DeleteTree(root);
+    root = nullptr;
+}
+
+void AVLTree::DeleteTree(TreeNode* node)
+{
+    if (!node)
+        return;
+
+    DeleteTree(node->left);
+    DeleteTree(node->right);
+
+    delete node;
+}
