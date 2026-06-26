@@ -96,7 +96,7 @@ void SocialNetwork::Clear()
     UserList.clear();
     for (auto& tree : UserContentList)
         tree.second.Clear();
-
+    CommandJournal::Clear();
     UserContentList.clear();
 }
 
@@ -105,7 +105,12 @@ void SocialNetwork::LikePost(const string& username, const string& postContent)
     if (graph.getUserIndex(username) < 0)
         return;
     if (!UserContentList[username].LikePost(postContent))
+    {
         cout << "Post not found\n";
+        return;
+    }
+    if(!isReplay)
+        CommandJournal::Append("LIKE_POST " + username + " " + postContent);
 }
 
 void SocialNetwork::UnlikePost(const string& username, const string& postContent)
@@ -113,5 +118,84 @@ void SocialNetwork::UnlikePost(const string& username, const string& postContent
     if (graph.getUserIndex(username) < 0)
         return;
     if (!UserContentList[username].UnlikePost(postContent))
+    {
         cout << "Post not found\n";
+        return;
+    }
+    if(!isReplay)
+        CommandJournal::Append("UNLIKE_POST " + username + " " + postContent);
+}
+
+double SocialNetwork::FeedScore(TreeNode *post, double affinity) const
+{
+    double ageHours = difftime(time(nullptr), post->timestamp) / 3600.0;
+    double recency = 1.0 / (1.0 + ageHours);
+    return 8.0 * log2(post->likes + 1) + 2.0 * sqrt(affinity) + 3.0 * recency;
+}
+
+void SocialNetwork::GenerateUserFeed(const string &username, int feedSize) const
+{
+    if (graph.getUserIndex(username) < 0)
+        return;
+    if (feedSize <= 0)
+        return;
+    int userId = UserList.at(username);
+
+    vector<FriendAffinity> friends;
+    for (int friendId : graph.GetFriends(userId))
+    {
+        friends.push_back(
+        {
+            friendId,
+            (double)(graph.MutualFriendCount(userId, friendId)+1.0)
+        });
+    }
+    if (friends.empty())
+    {
+        cout << "Feed is empty\n";
+        return;
+    }
+    sort(friends.begin(), friends.end(),
+    [](const FriendAffinity &a, const FriendAffinity &b)
+    {
+        return a.affinity > b.affinity;
+    });
+
+    double totalAffinity = 0;
+    for (const FriendAffinity &friendInfo : friends)
+        totalAffinity += max(1.0, friendInfo.affinity);
+    int candidateBudget = 10 * feedSize;
+
+    vector<FeedPost> candidates;
+    for (const FriendAffinity &friendInfo : friends)
+    {
+        int postsToTake = min(10,max(1,(int)((friendInfo.affinity / totalAffinity) * candidateBudget)));
+        vector<TreeNode*> posts;
+
+        auto it = UserContentList.find(graph.GetUsername(friendInfo.userId));
+        if (it == UserContentList.end())
+            continue;
+        it->second.GetRecentPostNodes(postsToTake, posts, it->second.GetRoot());
+        for (TreeNode *post : posts)
+        {
+            candidates.push_back(
+            {
+                post,
+                friendInfo.userId,
+                FeedScore(post, friendInfo.affinity)
+            });
+        }
+    }
+
+    sort(candidates.begin(), candidates.end(),
+    [](const FeedPost &a, const FeedPost &b)
+    {
+        return a.score > b.score;
+    });
+    for (int i = 0; i < min(feedSize, (int)candidates.size()); i++)
+    {
+        cout << graph.GetUsername(candidates[i].authorId) << '\n';
+        cout << candidates[i].post->PostContent << '\n';
+        cout << "Likes: " << candidates[i].post->likes << "\n\n";
+    }
 }

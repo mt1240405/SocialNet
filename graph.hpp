@@ -28,4 +28,8 @@ public:
     User *getUser(int id) const;                          // get User pointer by id
     int getUserIndex(const string &username) const; // find vertex index by username
     void Clear();
+    const vector<int>& GetFriends(int userId) const;
+    int MutualFriendCount(int userId1, int userId2) const;
+    string GetUsername(int userId) const;
+    int FriendCount(int userId) const;
 };

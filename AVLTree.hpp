@@ -33,4 +33,5 @@ public:
     bool LikePost(const string& postContent);
     bool UnlikePost(const string& postContent);
     int GetLikes(const string& postContent);
+    void GetRecentPostNodes(int &postCount, vector<TreeNode*> &posts, TreeNode *node) const;
 };

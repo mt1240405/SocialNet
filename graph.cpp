@@ -155,3 +155,30 @@ void Graph::Clear()
     usernameToId.clear();
     edgeList.clear();
 }
+
+const vector<int>& Graph::GetFriends(int userId) const
+{
+    return AdjacencyList[userId];
+}
+
+string Graph::GetUsername(int userId) const
+{
+    return getUser(userId) -> username;
+}
+
+int Graph::MutualFriendCount(int userId1, int userId2) const
+{
+    vector<bool> visited(NodeList.size(), false);
+    for (int friendId : AdjacencyList[userId1])
+        visited[friendId] = true;
+    int mutual = 0;
+
+    for (int friendId : AdjacencyList[userId2])
+        mutual += visited[friendId];
+    return mutual;
+}
+
+int Graph::FriendCount(int userId) const
+{
+    return AdjacencyList[userId].size();
+}

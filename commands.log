@@ -1,43 +1,78 @@
-ADD_USER 5
-ADD_USER 3
-ADD_USER 7
-ADD_USER 6
-ADD_USER 8
-ADD_USER 3
-ADD_USER 2
-ADD_FRIEND 1 5
-ADD_USER 2
-ADD_FRIEND 1 4
-ADD_FRIEND 6 5
-ADD_USER 0
-ADD_POST 8 hello this is 8 from 7
-ADD_POST 6 hello this is 6 from 9
-ADD_FRIEND 2 2
-ADD_USER 0
-ADD_POST 1 hello this is 1 from 9
-ADD_USER 0
-ADD_POST 5 hello this is 5 from 2
-ADD_USER 6
-ADD_FRIEND 2 1
-ADD_POST 3 hello this is 3 from 6
-ADD_FRIEND 3 2
-ADD_POST 4 hello this is 4 from 9
-ADD_USER 2
-ADD_USER 3
-ADD_USER 8
-ADD_POST 8 hello this is 8 from 9
-ADD_USER 5
-ADD_POST 7 hello this is 7 from 4
-ADD_POST 0 hello this is 0 from 9
-ADD_POST 4 hello this is 4 from 5
-ADD_FRIEND 7 6
-ADD_POST 8 hello this is 8 from 4
-ADD_POST 3 hello this is 3 from 7
-ADD_FRIEND 7 1
-ADD_USER 0
-ADD_USER 2
-ADD_FRIEND 0 7
-ADD_USER 7
-ADD_POST 2 hello this is 2 from 1
-ADD_USER 8
-ADD_POST 4 hello this is 4 from 3
+ADD_USER alice
+ADD_USER bob
+ADD_USER charlie
+ADD_USER david
+ADD_USER eve
+ADD_USER frank
+ADD_USER grace
+ADD_USER harry
+ADD_USER ivan
+ADD_USER jack
+ADD_USER kevin
+ADD_USER liam
+ADD_USER mike
+ADD_USER nancy
+ADD_USER oscar
+ADD_USER peter
+ADD_USER quinn
+ADD_USER rose
+ADD_USER steve
+ADD_USER tom
+ADD_FRIEND alice bob
+ADD_FRIEND alice charlie
+ADD_FRIEND alice david
+ADD_FRIEND alice eve
+ADD_FRIEND bob frank
+ADD_FRIEND bob grace
+ADD_FRIEND charlie grace
+ADD_FRIEND charlie harry
+ADD_FRIEND david ivan
+ADD_FRIEND david jack
+ADD_FRIEND eve kevin
+ADD_FRIEND eve liam
+ADD_FRIEND frank mike
+ADD_FRIEND grace nancy
+ADD_FRIEND harry oscar
+ADD_FRIEND ivan peter
+ADD_FRIEND jack quinn
+ADD_FRIEND kevin rose
+ADD_FRIEND liam steve
+ADD_FRIEND mike tom
+ADD_FRIEND grace ivan
+ADD_FRIEND harry kevin
+ADD_FRIEND peter rose
+ADD_POST bob B1
+ADD_POST bob B2
+ADD_POST bob B3
+ADD_POST charlie C1
+ADD_POST charlie C2
+ADD_POST david D1
+ADD_POST eve E1
+ADD_POST eve E2
+ADD_POST frank F1
+ADD_POST grace G1
+ADD_POST harry H1
+ADD_POST ivan I1
+ADD_POST jack J1
+ADD_POST kevin K1
+ADD_POST liam L1
+ADD_POST mike M1
+ADD_POST nancy N1
+ADD_POST oscar O1
+ADD_POST peter P1
+ADD_POST quinn Q1
+ADD_POST rose R1
+ADD_POST steve S1
+ADD_POST tom T1
+LIKE_POST bob B3
+LIKE_POST bob B3
+LIKE_POST charlie C2
+LIKE_POST grace G1
+LIKE_POST grace G1
+LIKE_POST grace G1
+LIKE_POST kevin K1
+LIKE_POST kevin K1
+LIKE_POST rose R1
+LIKE_POST rose R1
+LIKE_POST rose R1
+LIKE_POST rose R1

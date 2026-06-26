@@ -4,12 +4,33 @@
 #include "AVLTree.hpp"
 #include "User.hpp"
 
+struct FeedCandidate
+{
+    TreeNode *post;
+    double score;
+    string author;
+};
+
 class SocialNetwork
 {
 private:
     Graph graph;
     unordered_map<string, int> UserList;
     unordered_map<string, AVLTree> UserContentList;
+    // double FeedScore(TreeNode *post, int mutual) const;
+    double FeedScore(TreeNode *post, double affinity) const;
+    void CollectFeedCandidates(int authorId, int postLimit, double affinity, vector<FeedCandidate> &candidates) const;
+    struct FriendAffinity
+    {
+        int userId;
+        double affinity;
+    };
+    struct FeedPost
+    {
+        TreeNode *post;
+        int authorId;
+        double score;
+    };
 public: //As per given in requirements
     void AddUser(const string &username);
     void AddFriend(const string &user1, const string &user2);
@@ -22,4 +43,5 @@ public: //As per given in requirements
     bool isReplay;
     void LikePost(const string& username, const string& postContent);
     void UnlikePost(const string& username, const string& postContent);
+    void GenerateUserFeed(const string &username, int feedSize) const;
 };

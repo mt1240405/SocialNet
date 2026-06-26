@@ -95,6 +95,14 @@ void Run(SocialNetwork &sn)
             getline(cin >> ws, content);
             sn.UnlikePost(username, content);
         }
+        else if(command == "GENERATE_FEED")
+        {
+            string username;
+            int feedSize;
+            cin >> username >> feedSize;
+            toLower(username);
+            sn.GenerateUserFeed(username, feedSize);
+        }
         else
         {
             cout << "Unknown command\n";

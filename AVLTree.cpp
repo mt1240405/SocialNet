@@ -171,3 +171,18 @@ int AVLTree::GetLikes(const string& postContent)
         return 0;
     return node->likes;
 }
+
+void AVLTree::GetRecentPostNodes(int &postCount, vector<TreeNode*> &posts, TreeNode *node) const
+{
+    if (postCount <= 0 || !node)
+        return;
+    GetRecentPostNodes(postCount, posts, node->left);
+    if (postCount <= 0)
+        return;
+
+    posts.push_back(node);
+    postCount--;
+    if (postCount <= 0)
+        return;
+    GetRecentPostNodes(postCount, posts, node->right);
+}
